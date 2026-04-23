@@ -49,9 +49,7 @@ class Transaction(BaseModel):
     type: str
     note: str = ""
 
-# --- API ENDPOINTS ---
-
-@app.get("/")
+@app.get("/api/status")
 def home():
     return {"status": "online", "message": "Backend đang chạy trên Vercel!"}
 
