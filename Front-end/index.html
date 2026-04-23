@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Chi Tiêu AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Flow money</a></li>
+                <li><a href="#">Sign in</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="layout-wrapper">
+        <div class="sidebar">
+            <ul class="sidebar-menu">
+                <li class="active"><a href="#"><i class="fa-solid fa-chart-pie"></i> Tổng quan</a></li>
+                <li><a href="#"><i class="fa-solid fa-money-bill-transfer"></i> Giao Dịch</a></li>
+                <li><a href="#"><i class="fa-solid fa-piggy-bank"></i> Ngân sách</a></li>
+                <li><a href="#"><i class="fa-solid fa-chart-line"></i> Báo cáo</a></li>
+                <li><a href="#"><i class="fa-solid fa-gear"></i> Cài đặt</a></li>
+            </ul>
+        </div>
+
+        <main class="main-content">
+            <!-- AI BOX -->
+            <div class="box ai-box">
+                <h3><i class="fa-solid fa-robot" style="color: #3b82f6;"></i> Trợ lý AI Phân Tích Chi Tiêu</h3>
+                <div class="ai-input-row">
+                    <input type="text" id="aiInput"
+                        placeholder="VD: 'Ăn phở sáng 50k' hoặc 'Phân tích chi tiêu tháng này cho tôi'...">
+                    <button onclick="processAI()" id="btnAI">
+                        <i class="fa-solid fa-paper-plane"></i> Gửi
+                    </button>
+                </div>
+                <div id="aiStatus" style="display:none;"></div>
+            </div>
+
+            <div class="content-grid">
+                <!-- FORM NHẬP TAY -->
+                <div class="box">
+                    <h3><i class="fa-solid fa-plus-circle" style="color: #10b981;"></i> Thêm Giao Dịch</h3>
+                    <form id="transactionForm">
+                        <div class="input-group">
+                            <label for="amount">Số tiền (VNĐ)</label>
+                            <input type="number" id="amount" placeholder="VD: 50000" required>
+                        </div>
+                        <div class="row">
+                            <div class="input-group">
+                                <label for="type">Loại</label>
+                                <select id="type">
+                                    <option value="Chi">Khoản Chi</option>
+                                    <option value="Thu">Khoản Thu</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="category">Danh mục</label>
+                                <select id="category">
+                                    <option value="Ăn uống">Ăn uống</option>
+                                    <option value="Di chuyển">Di chuyển</option>
+                                    <option value="Mua sắm">Mua sắm</option>
+                                    <option value="Hóa đơn">Hóa đơn</option>
+                                    <option value="Lương">Lương</option>
+                                    <option value="Khác">Khác</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="note">Ghi chú</label>
+                            <textarea id="note" rows="2" placeholder="Mô tả ngắn..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <i class="fa-solid fa-save"></i> LƯU DỮ LIỆU
+                        </button>
+                    </form>
+                </div>
+
+                <!-- DASHBOARD + BIỂU ĐỒ -->
+                <div class="box">
+                    <h3><i class="fa-solid fa-chart-pie" style="color: #3b82f6;"></i> Tổng Quan Tài Chính</h3>
+                    <div class="summary-cards">
+                        <div class="card card-income">
+                            <span>TỔNG THU</span>
+                            <h4 id="totalIncome">0 đ</h4>
+                        </div>
+                        <div class="card card-expense">
+                            <span>TỔNG CHI</span>
+                            <h4 id="totalExpense">0 đ</h4>
+                        </div>
+                        <div class="card card-balance">
+                            <span>SỐ DƯ</span>
+                            <h4 id="totalBalance">0 đ</h4>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="expenseChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LỊCH SỬ GIAO DỊCH -->
+            <div class="box" style="margin-top: 25px;">
+                <h3><i class="fa-solid fa-clock-rotate-left" style="color: #8b5cf6;"></i> Giao Dịch Gần Đây</h3>
+                <div id="historyList">
+                    <p style="color:#94a3b8; text-align:center; padding:20px;">Đang tải...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
