@@ -5,6 +5,13 @@ from pydantic import BaseModel
 from datetime import datetime
 import uvicorn
 
+import os
+
+
+if os.environ.get("VERCEL"):
+    DB_NAME = "/tmp/finance.db"
+else:
+    DB_NAME = "finance.db"
 # Khởi tạo ứng dụng FastAPI
 app = FastAPI(title="Hệ thống Quản lý Tài chính - Backend")
 
