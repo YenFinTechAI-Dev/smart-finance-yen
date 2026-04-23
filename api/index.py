@@ -49,9 +49,9 @@ class Transaction(BaseModel):
     type: str
     note: str = ""
 
-@app.get("/api/status")
+@app.get("/api/status") # Sửa lại chỗ này
 def home():
-    return {"status": "online", "message": "Backend đang chạy trên Vercel!"}
+    return {"status": "online", "message": "Backend đang chạy!"}
 
 @app.post("/api/transactions")
 async def add_transaction(item: Transaction):
