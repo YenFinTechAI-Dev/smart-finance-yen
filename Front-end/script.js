@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:8000/api";
+const API_URL = window.location.origin;
 const AI_URL = "http://127.0.0.1:8001/api";
 let myChart;
 
