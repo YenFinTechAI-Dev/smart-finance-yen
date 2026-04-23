@@ -9,7 +9,7 @@ import os
 
 
 if os.environ.get("VERCEL"):
-    DB_NAME = "/tmp/finance.db"
+    DB_NAME = "finance.db"
 else:
     DB_NAME = "finance.db"
 # Khởi tạo ứng dụng FastAPI
